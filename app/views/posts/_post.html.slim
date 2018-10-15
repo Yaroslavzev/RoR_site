@@ -1,0 +1,10 @@
+.post_title
+  = post.title
+.post_author
+  | Автор: #{post.user.name}
+.post_body
+  = post.body
+.post_body_nav
+  = link_to 'Show', post
+  = link_to 'Edit', edit_post_path(post)
+  = link_to 'Destroy', post, data: { confirm: 'Are you sure?' }, method: :delete

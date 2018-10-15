@@ -1,0 +1,11 @@
+doctype html
+html
+  head
+    title
+      | Blog
+    = csrf_meta_tags
+    = javascript_pack_tag  'application'
+    = stylesheet_pack_tag  'application'
+  body
+    = render 'shared/header'
+    = yield

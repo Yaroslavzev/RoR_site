@@ -1,0 +1,15 @@
+h1 Listing posts
+
+table class="post_head"
+
+  tbody
+    = render  partial:  'post' , collection:  @posts
+
+
+br
+
+p
+  = link_to 'New Post', new_post_path
+
+p class="pagination"
+ = paginate  @posts
