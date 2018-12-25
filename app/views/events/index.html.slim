@@ -1,0 +1,15 @@
+h1 Listing events
+
+table class="event_head"
+
+  tbody
+    = render  partial:  'event' , collection:  @events
+
+
+br
+
+p
+  = link_to 'New Post', new_event_path
+
+p class="pagination"
+ = paginate  @events

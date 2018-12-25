@@ -8,6 +8,7 @@
     "popper.js": "^1.14.4",
     "rails-ujs": "^5.2.1",
     "turbolinks": "^5.2.0",
+    "xray": "^0.5.1",
     "yarn": "^1.10.1"
   },
   "devDependencies": {

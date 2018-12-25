@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
-Post.destroy_all
+Event.destroy_all
 Comment.destroy_all
 
 hash_users = 10.times.map do
@@ -22,16 +22,19 @@ users.first(7).each { |u| u.update creator: true }
 users.first(2).each { |u| u.update moderator: true }
 
 creators = User.where(creator: true)
-hash_posts = 20.times.map do
+hash_posts = 10.times.map do
   {
-    title: FFaker::HipsterIpsum.paragraph,
+    title: FFaker::HipsterIpsum.paragraph(sentence_count = 1),
     body: FFaker::HipsterIpsum.paragraphs,
-    user: creators.sample
+    user: creators.sample,
+    city: FFaker::AddressUK.city,
+    date_from: FFaker::Time.between(Time.current, Time.current + 5.day),
+    date_to: FFaker::Time.between(Time.current+5, Time.current + 10.day)
   }
 end
-posts = Post.create! hash_posts
+posts = Event.create! hash_posts
 
-hash_comments = 200.times.map do
+hash_comments = 20.times.map do
   commentable = ((rand(2) == 1) ? posts : users).sample
   {
     body: FFaker::HipsterIpsum.paragraphs,

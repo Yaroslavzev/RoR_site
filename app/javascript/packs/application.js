@@ -7,19 +7,11 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 // import Rails from 'rails-ujs';
-
-import Rails from 'rails-ujs';
+ import Rails from 'rails-ujs';
 Rails.start();
 
 // import Turbolinks from 'turbolinks'
 // Turbolinks.start();
 
 import  "init" ;
-//import  "components/page/page";
 import "stylesheets/application.scss";
-// import  "bootstrap";
-// Rails.start();
-// import  "./application.css"
-// window.onload  =  function (){
-//  document.body.insertAdjacentHTML ( "afterbegin" ,  "Hello Webpack!" );
-// };

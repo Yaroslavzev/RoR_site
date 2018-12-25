@@ -27,15 +27,17 @@ ActiveRecord::Schema.define(version: 2018_10_07_181650) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "posts", id: :serial, force: :cascade do |t|
-    t.string "title"
-    t.text "body"
+  create_table "events", id: :serial, force: :cascade do |t|
+    t.string "title", comment: "name of subjects"
+    t.text "body", comment: "list of subjects"
+    t.text "city", comment: "city of event"
+    t.date "date_from", comment: "start date"
+    t.date "date_to", comment: "end date"
     t.integer "user_id"
     t.boolean "visible", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["title"], name: "index_posts_on_title", unique: true
-    t.index ["user_id"], name: "index_posts_on_user_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -61,5 +63,5 @@ ActiveRecord::Schema.define(version: 2018_10_07_181650) do
   end
 
   add_foreign_key "comments", "users"
-  add_foreign_key "posts", "users"
+  add_foreign_key "events", "users"
 end

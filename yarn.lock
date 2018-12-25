@@ -6777,6 +6777,11 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
+xray@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/xray/-/xray-0.5.1.tgz#908301f87189335485fbffc98886fe9d67a5539d"
+  integrity sha1-kIMB+HGJM1SF+//JiIb+nWelU50=
+
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"

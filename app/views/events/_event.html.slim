@@ -1,0 +1,13 @@
+.event_title
+  = event.title
+.event_info_nav
+  .n Author: #{event.user.name}
+  .n City: #{event.city}
+  .n Start: #{event.date_from}
+  .n End: #{event.date_to}
+.event_body
+  = event.body
+.event_body_nav
+  = link_to 'Show', event
+  = link_to 'Edit', edit_event_path(event)
+  = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete

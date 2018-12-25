@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   root 'home#index'
-  resources :posts #, only: [:index , :show ]
+  resources :events #, only: [:index , :show ]
   get 'home/index'
   get 'some_another_url', to: 'home#index'
   get  '/home/(:hello)', to:  'home#index'

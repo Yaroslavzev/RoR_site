@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   before_destroy :log_before_destroy
   after_destroy :log_after_destroy
 
@@ -11,9 +11,9 @@ class User < ApplicationRecord
   validates :name, length: { maximum: 16, minimum: 2 }
   validates :name, uniqueness: true
 
-  has_many :posts, dependent: :destroy
+  has_many :events, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :commented_posts, through: :comments, source: :commentable, source_type: :Post
+  has_many :commented_posts, through: :comments, source: :commentable, source_type: :Event
   has_many :commented_users, through: :comments, source: :commentable, source_type: :User
 
   private
