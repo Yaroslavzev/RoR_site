@@ -1,0 +1,29 @@
+h1 Listing searches
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+
+
+= link_to 'New Search', new_search_path
+
+= form_tag(searches_path, method: :get) do
+ = label_tag(:search_city, "City:")
+ = text_field_tag(:search_city, params[:search])
+ = label_tag(:search_start_beg, "Start begin:")
+ = date_field_tag(:search_start_beg, params[:search_start_beg])
+ = label_tag(:search_start_end, "Start end:")
+ = date_field_tag(:search_start_end, params[:search_start_end])
+ = label_tag(:search_start, "Subject of event:")
+ = text_field_tag(:search_subject, params[:search_subject])
+ = submit_tag("Search")
+
+
+
+/  = form_tag(searches_path, method: :get) do
+/   = text_field_tag(:search, params[:search])
+/   = submit_tag("Search_by_")
