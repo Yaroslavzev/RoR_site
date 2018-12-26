@@ -1,11 +1,11 @@
 
 #puts ap Event.first(2)
-data = {search_city: "New Dot", search_subject: "wh", search_start_beg: "25 Dec 2018", search_start_end: "26 Dec 2018"}#, :search_start, :search_end,:search_subject)
+data = {search_city: "New Dot", search_subject: "wh",  search_start_end: "26 Dec 2018"}#, :search_start, :search_end,:search_subject)
 
 #puts data[:search_city]
 
 
- Event.search(data)
+p Event.search(data)
 
 
 #puts ap Event.first.title.include? data[:search_subject]

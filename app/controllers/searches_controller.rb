@@ -4,7 +4,7 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
-    @searches = Event.first #search(search_params)
+    @searches = Event.search(search_params)
   end
 
   # GET /searches/1
