@@ -4,7 +4,12 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
-    @searches = Event.search(search_params)
+    Rails.logger.info "*" * 50
+    Rails.logger.info  !search_params.to_h.map { |k,v| v.empty? }.all? #&& !search_params.empty?
+    Rails.logger.info  !search_params.to_h.map { |k,v| v.empty? }.all?
+    Rails.logger.info  !search_params.empty?
+
+    @searches = Event.search(search_params) if !search_params.to_h.map { |k,v| v.empty? }.all?
   end
 
   # GET /searches/1

@@ -6,20 +6,23 @@ class Event < ApplicationRecord
 
 
     def self.search(search)
+      search.delete_if {|key, object| object.empty?}
       @search_city = search[:search_city]
       @search_start_beg = search[:search_start_beg]
       @search_start_end = search[:search_start_end]
       @search_subject = search[:search_subject]
+
+
 #      p start_time_search_result.compact
 #
 #      p city_search_result.compact
 #      p subject_search_result.compact
-    
+
       #if !start_time_search_result.compact.empty?
       #  if !subject_search_result.compact.empty?
       result = []
-      result << start_time_search_result
       result << city_search_result
+      result << start_time_search_result
       result << subject_search_result
     end
 
@@ -40,7 +43,7 @@ class Event < ApplicationRecord
     end
 
     def self.start_time_search_result
-      if !@search_start_beg.nil? & !@search_start_beg.nil?
+      if !@search_start_beg.nil? && !@search_start_beg.nil?
         self.all.map do |object|
           object.id if (object.date_from).between?(@search_start_beg.to_date, @search_start_end.to_date)
         end
