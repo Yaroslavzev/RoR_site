@@ -1,6 +1,6 @@
 
 #puts ap Event.first(2)
-data = {search_city: "" , search_subject: "wh", search_start_beg: "25 Dec 2018", search_start_end: "26 Dec 2018"}#, :search_start, :search_end,:search_subject)
+data = {search_place: "" , search_subject: "w", search_start_beg: "", search_start_end: ""}#, :search_start, :search_end,:search_subject)
 
 #puts data[:search_city]
 ss = Event.search(data)
@@ -25,4 +25,6 @@ ss = Event.search(data)
 #end
 #end
 
-p [true, true, true, true].true?
+#p [true, true, true, true].true?
+xxx= Event.third.comments.order(:created_at)
+puts ap User.first

@@ -7,37 +7,29 @@ class Event < ApplicationRecord
 
     def self.search(search)
       search.delete_if {|key, object| object.empty?}
-      @search_city = search[:search_city]
+      @search_place = search[:search_place]
       @search_start_beg = search[:search_start_beg]
       @search_start_end = search[:search_start_end]
       @search_subject = search[:search_subject]
 
-
-#      p start_time_search_result.compact
-#
-#      p city_search_result.compact
-#      p subject_search_result.compact
-
-      #if !start_time_search_result.compact.empty?
-      #  if !subject_search_result.compact.empty?
       result = []
-      result << city_search_result
+      result << place_search_result
       result << start_time_search_result
       result << subject_search_result
     end
 
-    def self.city_search_result
-      if !@search_city.nil?
+    def self.place_search_result
+      if !@search_place.nil?
         self.all.map do |object|
-          object.id if object.city == @search_city
+          object.id if object.place == @search_place
       end
     end
     end
 
     def self.subject_search_result
       if !@search_subject.nil?
-      self.all.map do |object|
-        object.id if (object.title).include? @search_subject
+        self.all.map do |object|
+          object.id if object.body.map {|subject| subject.include?(@search_subject)}.reject {|i|  i === false }.any?
       end
     end
     end

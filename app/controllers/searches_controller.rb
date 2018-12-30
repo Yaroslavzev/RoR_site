@@ -4,10 +4,6 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
-    Rails.logger.info "*" * 50
-    Rails.logger.info  !search_params.to_h.map { |k,v| v.empty? }.all? #&& !search_params.empty?
-    Rails.logger.info  !search_params.to_h.map { |k,v| v.empty? }.all?
-    Rails.logger.info  !search_params.empty?
 
     @searches = Event.search(search_params) if !search_params.to_h.map { |k,v| v.empty? }.all?
   end
@@ -74,6 +70,6 @@ class SearchesController < ApplicationController
 #
     # Never trust parameters from the scary internet, only allow the white list through.
     def search_params
-      params.permit(:search_city, :search_start_beg, :search_start_end,:search_subject)
+      params.permit(:search_place, :search_start_beg, :search_start_end,:search_subject)
     end
 end

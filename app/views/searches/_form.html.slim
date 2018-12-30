@@ -1,9 +1,26 @@
-= form_for @search do |f|
-  - if @search.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@search.errors.count, "error")} prohibited this search from being saved:"
-      ul
-        - @search.errors.full_messages.each do |message|
-          li = message
 
-  .actions = f.submit
+= form_tag(searches_path, method: :get, class: "search_form") do
+ .form-group
+  .col-sm-2.control-label
+    = label_tag(:search_place, "Place:")
+
+  .col-sm-10
+    = text_field_tag(:search_place, params[:search], class: "form-control")
+ .form-group
+  .col-sm-2.control-label
+    = label_tag(:search_start_beg, "Start begin:")
+  .col-sm-10
+    = date_field_tag(:search_start_beg, params[:search_start_beg],class: "form-control")
+  .col-sm-2.control-label
+    = label_tag(:search_start_end, "Start end:")
+  .col-sm-10
+    = date_field_tag(:search_start_end, params[:search_start_end], class: "form-control")
+ .form-group
+  .col-sm-2.control-label
+    = label_tag(:search_start, "Subject of event:")
+  .col-sm-10
+    = text_field_tag(:search_subject, params[:search_subject],class: "form-control")
+ p
+ .form-group
+  .col-sm-offset-2.col-sm-10
+    = submit_tag("Search", class: "btn btn-success")

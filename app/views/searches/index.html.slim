@@ -1,53 +1,6 @@
 h1 Listing searches
 
-table
-  thead
-    tr
-      th
-      th
-      th
 
+== render 'form'
 
-
-/ = link_to 'New Search', new_search_path
-
-= form_tag(searches_path, method: :get, class: "search_form") do
- = label_tag(:search_city, "City:")
- = text_field_tag(:search_city, params[:search])
- = label_tag(:search_start_beg, "Start begin:")
- = date_field_tag(:search_start_beg, params[:search_start_beg])
- = label_tag(:search_start_end, "Start end:")
- = date_field_tag(:search_start_end, params[:search_start_end])
- = label_tag(:search_start, "Subject of event:")
- = text_field_tag(:search_subject, params[:search_subject])
- p
- = submit_tag("Search")
-
-- print_out = ["The city ", "Start time range ", "The subject "]
-
-
-- if @searches.present?
-  - @searches.each_with_index do |object, index|
-    p
-    - if object.nil?
-      = print_out[index] + "has not been entered"
-    - elsif object.kind_of?(Array) & object.compact.empty?
-      = print_out[index] + "has not been found"
-
-br
-- if @searches.present?
-  h2 Search result
-  p
-  - if !@searches.compact.map {|object| object.compact.empty?}.all? {|object| object.eql?(false)}
-    = "Event not found"
-  - elsif @searches.compact.flatten.compact.size == 1
-    - @searches.compact.flatten.compact.map do |event|
-      p
-        = Event.find(event).title
-  - else
-    - @searches.compact.inject{|total, object| total & object.compact}.map do |event|
-      p
-        = Event.find(event).title
-  p
-    =button_to 'Save results', searches_path, method: :post
-    = @searches
+== render 'result'

@@ -5,17 +5,25 @@
       ul
         - @event.errors.full_messages.each do |message|
           li = message
+  f.hidden_field_tag 'user_id', current_user.id
+  .form-group
+    .col-sm-2.control-label
+      = f.label :title
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :body
-    = f.text_area :body
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :visible
-    = f.check_box :visible
-  .actions = f.submit
+    .col-sm-10
+      = f.text_field :title, class: "form-control"
+  .form-group
+    .col-sm-2.control-label
+      = f.label :body
+
+    .col-sm-10
+      = f.text_area :body, class: "form-control"
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .actions
+       = f.submit nil, class: "btn btn-success"
+
+
+/ :html => {:user_id => current_user.id, :visible => true})
+/ Rails.logger.info "*" * 50
