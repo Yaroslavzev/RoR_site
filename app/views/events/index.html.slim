@@ -3,9 +3,8 @@ h1 Listing events
 table class="event_head"
 
   tbody
-    = render  partial:  'event' , collection:  @events
-
-
+    = render  @events, title: "all"
+    
 br
 
 p

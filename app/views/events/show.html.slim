@@ -1,20 +1,9 @@
 p#notice = notice
 
+== render @event, title: "one"
 
-h2
-  = @event.title
-p
-  strong Subjects of event:
-  -@event.body.each do |event|
-    p
-    = event
-p
-  strong User:
-  = @event.user.name
-/ p
-/  strong Visible:
-/  = @event.visible
-p
+
+.event_body
   strong  Comments:
 
   - @comments.each  do  |comment|
@@ -27,9 +16,5 @@ p
 p class="pagination"
   = paginate  @comments
 
-p
-  == render 'commentform'
 
-=> link_to 'Edit', edit_event_path(@event)
-'|
-=< link_to 'Back', events_path
+== render "commentform"

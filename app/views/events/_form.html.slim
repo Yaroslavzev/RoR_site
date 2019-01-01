@@ -5,13 +5,14 @@
       ul
         - @event.errors.full_messages.each do |message|
           li = message
-  f.hidden_field_tag 'user_id', current_user.id
+  = f.hidden_field :user_id, value: current_user.id
   .form-group
     .col-sm-2.control-label
       = f.label :title
 
     .col-sm-10
       = f.text_field :title, class: "form-control"
+
   .form-group
     .col-sm-2.control-label
       = f.label :body
@@ -20,10 +21,24 @@
       = f.text_area :body, class: "form-control"
 
   .form-group
+   .col-sm-2.control-label
+     = f.label "Place:"
+
+   .col-sm-10
+     = f.text_field :place, class: "form-control"
+
+  .form-group
+   .col-sm-2.control-label
+     = f.label "Start day:"
+   .col-sm-10
+     = f.date_field :date_from, class: "form-control"
+
+   .col-sm-2.control-label
+     = f.label "End day:"
+   .col-sm-10
+     = f.date_field :date_to, class: "form-control"
+
+  .form-group
     .col-sm-offset-2.col-sm-10
       .actions
        = f.submit nil, class: "btn btn-success"
-
-
-/ :html => {:user_id => current_user.id, :visible => true})
-/ Rails.logger.info "*" * 50

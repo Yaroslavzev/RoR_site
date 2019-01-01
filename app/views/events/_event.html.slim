@@ -11,6 +11,7 @@
     p
     = event
 .event_body_nav
-  = link_to 'Show', event
+  = link_to 'Show', event if title == "all"
   = link_to 'Edit', edit_event_path(event)
   = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+  = link_to 'Back', events_path if title == "one"

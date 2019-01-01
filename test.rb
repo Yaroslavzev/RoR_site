@@ -1,12 +1,11 @@
 
 #puts ap Event.first(2)
-data = {search_place: "" , search_subject: "w", search_start_beg: "", search_start_end: ""}#, :search_start, :search_end,:search_subject)
+data = {search_place: "ddd" , search_subject: "dd", search_start_beg: "", search_start_end: ""}#, :search_start, :search_end,:search_subject)
 
 #puts data[:search_city]
-ss = Event.search(data)
+#p Event.search(data)
 
 
-#p data[:search_city]
 
 #p ss
 #p ss.compact.inject {|total, object| total & object.compact}#.empty?#Event.search(data).empty?
@@ -24,7 +23,5 @@ ss = Event.search(data)
 #    puts (print_out[index] + "has not been found" if object.kind_of?(Array) & object.compact.empty?)
 #end
 #end
-
-#p [true, true, true, true].true?
-xxx= Event.third.comments.order(:created_at)
-puts ap User.first
+#bbb = Event.new(xxx)
+puts ap Comment.second.commentable

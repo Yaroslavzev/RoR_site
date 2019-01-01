@@ -4,7 +4,6 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
-
     @searches = Event.search(search_params) if !search_params.to_h.map { |k,v| v.empty? }.all?
   end
 

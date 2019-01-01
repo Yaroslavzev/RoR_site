@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   has_many :comments, as: :commentable
   has_many :commentators, through: :comments, source: :user
 
+  validates :title, :body, :place, :date_from, :date_to, presence: true
 
     def self.search(search)
       search.delete_if {|key, object| object.empty?}
