@@ -2,12 +2,16 @@
   = event.title
 .event_info_nav
   .n Author: #{event.user.name}
-  .n City: #{event.city}
+  .n Place: #{event.place}
   .n Start: #{event.date_from}
   .n End: #{event.date_to}
 .event_body
-  = event.body
+  h4 Topics of event:
+  -event.body.each do |event|
+    p
+    = event
 .event_body_nav
-  = link_to 'Show', event
+  = link_to 'Show', event if title == "all"
   = link_to 'Edit', edit_event_path(event)
   = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+  = link_to 'Back', events_path if title == "one"

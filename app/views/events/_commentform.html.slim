@@ -1,0 +1,16 @@
+= form_tag "/comments" do
+ = hidden_field_tag :user_id, current_user.id
+ = hidden_field_tag :commentable_id, @event.id
+ = hidden_field_tag :commentable_type, "Event"
+
+ .form-group
+
+   .col-sm-2.control-label
+    = label_tag "Add comment:"
+
+   .col-sm-10
+    = text_field_tag :body, value = nil, class: "form-control"
+
+ .form-group
+  .col-sm-offset-2.col-sm-10
+    = submit_tag "Add", class: "btn btn-success"

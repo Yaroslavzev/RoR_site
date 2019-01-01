@@ -12,7 +12,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @comments = @event.comments.order(:created_at).page(params[:page]).per(5)
+    @comments = @event.comments.order(:created_at).page(params[:page]).per(10)
   end
 
   # GET /events/new
@@ -27,7 +27,8 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
+
+    @event = Event.new(title: event_params[:title], body: eval(event_params[:body]), place: event_params[:place], user_id:  event_params[:user_id],  date_from: event_params[:date_from],  date_to: event_params[:date_to],  visible: event_params[:visible])
 
     respond_to do |format|
       if @event.save
@@ -44,7 +45,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     respond_to do |format|
-      if @event.update(event_params)
+      if @event.update(title: event_params[:title], body: eval(event_params[:body]), place: event_params[:place], user_id:  event_params[:user_id],  date_from: event_params[:date_from],  date_to: event_params[:date_to],  visible: event_params[:visible])
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -72,6 +73,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :body, :user_id, :visible)
+      params.require(:event).permit(:title, :body, :user_id, :place, :date_from, :date_to, :visible)
     end
 end

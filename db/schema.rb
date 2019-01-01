@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 2018_10_07_181650) do
 
   create_table "events", id: :serial, force: :cascade do |t|
     t.string "title", comment: "name of subjects"
-    t.text "body", comment: "list of subjects"
-    t.text "city", comment: "city of event"
+    t.text "body", comment: "list of subjects", array: true
+    t.text "place", comment: "place of event"
     t.date "date_from", comment: "start date"
     t.date "date_to", comment: "end date"
     t.integer "user_id"

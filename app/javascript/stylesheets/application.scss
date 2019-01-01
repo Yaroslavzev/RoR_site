@@ -24,7 +24,7 @@
 
  @import url('https://fonts.googleapis.com/css?family=Montserrat:100,300,700');
 @import "events.scss";
-
+@import "searches.scss";
 
  body {
    width: 80%;
@@ -66,5 +66,15 @@ h2{
 .devise_2{
   padding-left: 5%;
 }
+
+}
+.comment > div {
+  display: inline;
+
+  padding-bottom: 20px;
+  padding-left: 15px;
+}
+.pagination {
+  margin-left: 10px;
 
 }

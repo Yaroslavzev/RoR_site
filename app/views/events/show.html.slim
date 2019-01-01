@@ -1,28 +1,20 @@
 p#notice = notice
 
-p
-  strong Title:
-  = @event.title
-p
-  strong Body:
-  = @event.body
-p
-  strong User:
-  = @event.user.name
-/ p
-/  strong Visible:
-/  = @event.visible
-p
+== render @event, title: "one"
+
+
+.event_body
   strong  Comments:
-  table
-   -@comments.each  do  |comment|
-    tr
-      td: b  = comment.user.name
-      td  = comment.body
+
+  - @comments.each  do  |comment|
+   .comment
+    .
+     b = comment.user.name + ":"
+    .
+     = comment.body
 
 p class="pagination"
   = paginate  @comments
 
-=> link_to 'Edit', edit_event_path(@event)
-'|
-=< link_to 'Back', events_path
+
+== render "commentform"
