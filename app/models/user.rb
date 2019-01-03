@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :commented_posts, through: :comments, source: :commentable, source_type: :Event
+  has_many :searches, dependent: :destroy
+
   has_many :commented_users, through: :comments, source: :commentable, source_type: :User
 
   private

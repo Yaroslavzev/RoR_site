@@ -5,7 +5,7 @@ data = {search_place: "ddd" , search_subject: "dd", search_start_beg: "", search
 #puts data[:search_city]
 #p Event.search(data)
 
-
+#search_place: "ddd" , search_subject: "dd", search_start_beg: "", search_start_end: "" user_id
 
 #p ss
 #p ss.compact.inject {|total, object| total & object.compact}#.empty?#Event.search(data).empty?
@@ -23,5 +23,14 @@ data = {search_place: "ddd" , search_subject: "dd", search_start_beg: "", search
 #    puts (print_out[index] + "has not been found" if object.kind_of?(Array) & object.compact.empty?)
 #end
 #end
-#bbb = Event.new(xxx)
-puts ap Comment.second.commentable
+#bbb = Event.search(Search.last.attributes.except("id", "user_id", "created_at", "updated_at" ))
+pp =  Search.find(9).attributes.except("id", "user_id", "created_at", "updated_at" ).map {|key, object| {"#{key}": object.to_s}}.reduce(:merge)
+  #p object#.map do |key, value|
+  #  p key
+  #end
+
+
+p Event.search(pp)
+
+#p pp["search_start_beg"].to_s(:db).class
+#p pp["search_start_beg"].to_s.class

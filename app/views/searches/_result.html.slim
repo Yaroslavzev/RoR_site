@@ -25,6 +25,10 @@ br
         = Event.find(event2).title
         ="  "
         = link_to 'Show', Event.find(event2)
-  p
-    =button_to 'Save results', searches_path, method: :post
-    = @searches
+  - if @inserted_data.present?
+    p
+      = form_tag "searches" do
+        = hidden_field_tag :user_id, current_user.id
+        - @inserted_data.each do |key,value|
+          = hidden_field_tag key,value
+        = submit_tag 'Save results', class: "btn btn-success"
