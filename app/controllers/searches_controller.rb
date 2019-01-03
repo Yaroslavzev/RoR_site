@@ -5,11 +5,24 @@ class SearchesController < ApplicationController
   # GET /searches.json
   def index
     @searches = Event.search(search_params) if !search_params.to_h.map { |k,v| v.empty? }.all?
+    @inserted_data = search_params
+
+    Rails.logger.info "*" * 50
+    Rails.logger.info params
+    Rails.logger.info search_params[:search_start_beg].class
+
   end
 
   # GET /searches/1
   # GET /searches/1.json
   def show
+    search_params_of_filtr = Search.find(search_params[:id]).attributes.except("id", "user_id", "created_at", "updated_at" ).map {|key, object| {"#{key}": object.to_s}}.reduce(:merge)
+
+    @searches = Event.search(search_params_of_filtr) if !search_params.to_h.map { |k,v| v.empty? }.all?
+
+    Rails.logger.info "*" * 50
+    Rails.logger.info search_params_of_filtr
+    Rails.logger.info search_params_of_filtr[:search_start_beg].class
   end
 #
 #  # GET /searches/new
@@ -21,21 +34,22 @@ class SearchesController < ApplicationController
 #  def edit
 #  end
 #
-#  # POST /searches
-#  # POST /searches.json
-#  def create
-#    @search = Search.new(search_params)
-#
-#    respond_to do |format|
-#      if @search.save
-#        format.html { redirect_to @search, notice: 'Search was successfully created.' }
-#        format.json { render :show, status: :created, location: @search }
-#      else
-#        format.html { render :new }
-#        format.json { render json: @search.errors, status: :unprocessable_entity }
-#      end
-#    end
-#  end
+  # POST /searches
+  # POST /searches.json
+  def create
+
+    @search = Search.new(search_params)
+
+    #respond_to do |format|
+      if @search.save
+        #format.html { redirect_to @search, notice: 'Search was successfully created.' }
+        #format.json { render :show, status: :created, location: @search }
+      else
+        #format.html { render :new }
+        #format.json { render json: @search.errors, status: :unprocessable_entity }
+      #end
+    end
+  end
 #
 #  # PATCH/PUT /searches/1
 #  # PATCH/PUT /searches/1.json
@@ -69,6 +83,6 @@ class SearchesController < ApplicationController
 #
     # Never trust parameters from the scary internet, only allow the white list through.
     def search_params
-      params.permit(:search_place, :search_start_beg, :search_start_end,:search_subject)
+      params.permit(:id, :user_id,:search_place, :search_start_beg, :search_start_end,:search_subject)
     end
 end

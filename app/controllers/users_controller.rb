@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @filtres = User.find(current_user.id).searches
   end
 
   # GET /users/new

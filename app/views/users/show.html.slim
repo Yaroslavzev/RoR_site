@@ -19,6 +19,16 @@ p
   strong Comments count:
   = @user.comments_count
 
+h2 Filtres
+- number_of_filtr = 0
+-@filtres.each do |filtr|
+  .filtr
+    - number_of_filtr += 1
+    = link_to "Filtr №" + number_of_filtr.to_s, search_path(filtr.id)
+    p
+      = filtr.id
+
+
 => link_to 'Edit', edit_user_path(@user)
 '|
 =< link_to 'Back', users_path
