@@ -19,6 +19,8 @@ br
     - @searches.compact.flatten.compact.map do |event|
       p
         = Event.find(event).title
+        ="  "
+        = link_to 'Show', Event.find(event)
   - else
     - @searches.compact.inject{|total, object| total & object.compact}.compact.map do |event2|
       p

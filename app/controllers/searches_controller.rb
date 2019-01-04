@@ -17,12 +17,8 @@ class SearchesController < ApplicationController
   # GET /searches/1.json
   def show
     search_params_of_filtr = Search.find(search_params[:id]).attributes.except("id", "user_id", "created_at", "updated_at" ).map {|key, object| {"#{key}": object.to_s}}.reduce(:merge)
+     @searches = Event.search(search_params_of_filtr) if !search_params.to_h.map { |k,v| v.empty? }.all?
 
-    @searches = Event.search(search_params_of_filtr) if !search_params.to_h.map { |k,v| v.empty? }.all?
-
-    Rails.logger.info "*" * 50
-    Rails.logger.info search_params_of_filtr
-    Rails.logger.info search_params_of_filtr[:search_start_beg].class
   end
 #
 #  # GET /searches/new

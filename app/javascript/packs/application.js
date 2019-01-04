@@ -7,11 +7,17 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 // import Rails from 'rails-ujs';
- import Rails from 'rails-ujs';
-Rails.start();
-
-// import Turbolinks from 'turbolinks'
-// Turbolinks.start();
+//  import Rails from 'rails-ujs';
+// Rails.start();
+//
+//  import Turbolinks from 'turbolinks'
+//  Turbolinks.start();
 
 import  "init" ;
 import "stylesheets/application.scss";
+
+window.onload  =  function ()  {
+  let elem  = document.getElementById( 'hello' );
+  console.log(elem.innerText );
+  document.body.insertAdjacentHTML ( "afterbegin" , elem.innerText );
+}

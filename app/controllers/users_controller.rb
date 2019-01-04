@@ -12,6 +12,15 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @filtres = User.find(current_user.id).searches
+    @notifications = Notification.where(user_id: current_user).unread
+  end
+
+  def update_notification
+    @user = User.find(current_user.id)
+    Rails.logger.info "*" * 50
+    Rails.logger.info params
+    #Rails.logger.info search_params[:search_start_beg].class
+
   end
 
   # GET /users/new

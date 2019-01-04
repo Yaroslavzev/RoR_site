@@ -32,6 +32,13 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+
+
+        Search.all.each do |object|
+          search_params_of_filtr = object.attributes.except("id", "user_id", "created_at", "updated_at" ).map {|key, object| {"#{key}": object.to_s}}.reduce(:merge)
+
+          Notification.create(user_id: object.user.id, search_id: object.id, event_id: @event.id) if @event.search_notif(search_params_of_filtr).compact.inject{|total, object| total & object.compact}.any?
+        end
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
