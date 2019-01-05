@@ -20,4 +20,84 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  label:
+    log_in: Login
+    log_out: Logout
+    hello:  Hi,  %s
+    registration: Registration
+    about_user: my data
+    events: events
+    search: search
+    email: E-mail
+    password: Password
+    remember_me: Remember me
+    password_confirmation: Confirm
+    name: Name
+    login: Login
+    sign_up: Sign up
+    minimum_password_length: signs
+    forgot_password: Forgot password?
+    receive_confirmation: Did not receive confirmation?
+    unlock_instructions: Didn't get unlock instructions?
+
+  event:
+    add_comment: Add comment
+    add: Add
+    author: Author
+    place: Place
+    start: Start
+    end: End
+    Show: Show
+    Edit: Edit
+    Destroy: Destroy
+    Back: Back
+    Listing_events: Listing events
+    Editing_event: Editing event
+    Comments: Comments
+    New_event: New event
+    listing_searches: Listing searches
+    new_search: New search
+
+  search:
+    show: Show
+    back: Back
+    save_result: Save result
+    not_found: Event not found
+    city: The city
+    range: Start time range
+    subject: The subject
+    not_entered: has not been entered
+    not_found_array: has not been found
+
+  user:
+    editing_user: Editing user
+    show: Show
+    back: Back
+    destroy: Destroy
+    listing_users: Listing users
+    new_user: New User
+    sure: Are you sure?
+    Name: Name
+    Email: Email
+    Moderator: Moderator
+    Creator: Creator
+    Banned: Banned
+    Comments: Comments count
+
+
+  activerecord:
+    errors:
+      messages:
+        blank:  Required
+        too_short: Too short
+
+        models:
+        user: Users
+        post: Posts
+
+        attributes:
+          user:
+            password: Password
+            password_confirmation: Confirm
+            email: Email
+            name: Name

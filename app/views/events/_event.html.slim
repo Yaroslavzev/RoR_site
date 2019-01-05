@@ -1,17 +1,17 @@
 .event_title
   = event.title
 .event_info_nav
-  .n Author: #{event.user.name}
-  .n Place: #{event.place}
-  .n Start: #{event.date_from}
-  .n End: #{event.date_to}
+  .n #{t('event.author')}: #{event.user.name}
+  .n #{t('event.place')}: #{event.place}
+  .n #{t('event.start')}: #{event.date_from}
+  .n #{t('event.end')}: #{event.date_to}
 .event_body
   h4 Topics of event:
   -event.body.each do |event|
     p
     = event
 .event_body_nav
-  = link_to 'Show', event if title == "all"
-  = link_to 'Edit', edit_event_path(event)
-  = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
-  = link_to 'Back', events_path if title == "one"
+  = link_to t('event.Show'), event if title == "all"
+  = link_to t('event.Edit'), edit_event_path(event)
+  = link_to t('event.Destroy'), event, data: { confirm: 'Are you sure?' }, method: :delete
+  = link_to t('event.Back'), events_path if title == "one"

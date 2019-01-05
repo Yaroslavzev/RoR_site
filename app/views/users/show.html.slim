@@ -31,7 +31,7 @@ h2 Filtres
         p
           = notification.event.title if notification.search_id == filtr.id
           = '   '
-          = link_to "Go to event", update_notification_users_path
+          = link_to "Go to event", Event.find(notification.event_id)
 
 
 => link_to 'Edit', edit_user_path(@user)

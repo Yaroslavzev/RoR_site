@@ -1,36 +1,36 @@
-- print_out = ["The city ", "Start time range ", "The subject "]
+- print_out = [t("search.city"), t("search.range"), t("search.subject")]
 
 
 - if @searches.present?
   - @searches.each_with_index do |object, index|
     p
     - if object.nil?
-      = print_out[index] + "has not been entered"
+      = print_out[index] + " #{t('search.not_entered')}"
     - elsif object.kind_of?(Array) & object.compact.empty?
-      = print_out[index] + "has not been found"
+      = print_out[index] +  " #{t('search.not_found_array')}"
 
 br
 - if @searches.present?
   h2 Search result
   p
   - if !@searches.compact.map {|object| object.compact.empty?}.all? {|object| object.eql?(false)}
-    = "Event not found"
+    = t("search.not_found")
   - elsif @searches.compact.flatten.compact.size == 1
     - @searches.compact.flatten.compact.map do |event|
       p
         = Event.find(event).title
         ="  "
-        = link_to 'Show', Event.find(event)
+        = link_to t('search.show'), Event.find(event)
   - else
-    - @searches.compact.inject{|total, object| total & object.compact}.compact.map do |event2|
+    - @searches.compact.inject{|total, object| total & object.compact}.compact.map do |event|
       p
-        = Event.find(event2).title
+        = Event.find(event).title
         ="  "
-        = link_to 'Show', Event.find(event2)
+        = link_to t('search.show'), Event.find(event)
   - if @inserted_data.present?
     p
       = form_tag "searches" do
         = hidden_field_tag :user_id, current_user.id
         - @inserted_data.each do |key,value|
           = hidden_field_tag key,value
-        = submit_tag 'Save results', class: "btn btn-success"
+        = submit_tag t('search.save_result'), class: "btn btn-success"
