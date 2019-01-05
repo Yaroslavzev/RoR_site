@@ -15,14 +15,7 @@ div class="devise"
    .form-group
      .col-sm-2.control-label
       = t('label.password')
-      - if @minimum_password_length
-       em
-         | (
-         = "from "
-         = @minimum_password_length
-         = " "
-         = t('label.minimum_password_length')
-         | )
+    
      .col-sm-10
        = f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Password"
    .form-group

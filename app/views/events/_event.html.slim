@@ -6,12 +6,12 @@
   .n #{t('event.start')}: #{event.date_from}
   .n #{t('event.end')}: #{event.date_to}
 .event_body
-  h4 Topics of event:
+  h4  #{t('event.topics_of_event')}:
   -event.body.each do |event|
     p
     = event
 .event_body_nav
   = link_to t('event.Show'), event if title == "all"
   = link_to t('event.Edit'), edit_event_path(event)
-  = link_to t('event.Destroy'), event, data: { confirm: 'Are you sure?' }, method: :delete
+  = link_to t('event.Destroy'), event, data: { confirm: t('event.sure')}, method: :delete
   = link_to t('event.Back'), events_path if title == "one"

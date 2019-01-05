@@ -30,8 +30,8 @@ data = {search_place: " " , search_subject: "", search_start_beg: "", search_sta
 #  puts object.attributes.except("id", "user_id", "created_at", "updated_at" ).map {|key, object| {"#{key}": object.to_s}}.reduce(:merge)#.delete_if {|key, object| object.empty?}
 #end
 #puts pp
-puts User.first.email
-@event = Event.first#.search_notif(search_params_of_filtr).compact.inject{|total, object| total & object.compact}.any?
+#puts User.first.email
+#@event = Event.first#.search_notif(search_params_of_filtr).compact.inject{|total, object| total & object.compact}.any?
 
 #Search.all.each do |object|
 #  search_params_of_filtr = object.attributes.except("id", "user_id", "created_at", "updated_at" ).map {|key, object| {"#{key}": object.to_s}}.reduce(:merge)
@@ -46,7 +46,7 @@ puts User.first.email
 #bb = Notification.create(user_id: 1, search_id: 3)
 #puts bb.save
 
-puts ap Notification.all
+puts User.first.email
 #@searches.compact.inject{|total, object| total & object.compact}.compact.map do |event2|
 #  p
 #    = Event.find(event2).title

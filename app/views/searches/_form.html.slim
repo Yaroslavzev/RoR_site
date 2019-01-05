@@ -2,25 +2,25 @@
 = form_tag(searches_path, method: :get, class: "search_form") do
  .form-group
   .col-sm-2.control-label
-    = label_tag(:search_place, "Place:")
+    = label_tag(:search_place, t('search.city'))
 
   .col-sm-10
     = text_field_tag(:search_place, params[:search], class: "form-control")
  .form-group
   .col-sm-2.control-label
-    = label_tag(:search_start_beg, "Start begin:")
+    = label_tag(:search_start_beg, t('search.start'))
   .col-sm-10
     = date_field_tag(:search_start_beg, params[:search_start_beg], class: "form-control")
   .col-sm-2.control-label
-    = label_tag(:search_start_end, "Start end:")
+    = label_tag(:search_start_end, t('search.end'))
   .col-sm-10
     = date_field_tag(:search_start_end, params[:search_start_end], class: "form-control")
  .form-group
   .col-sm-2.control-label
-    = label_tag(:search_start, "Subject of event:")
+    = label_tag(:search_start, t('search.subject'))
   .col-sm-10
     = text_field_tag(:search_subject, params[:search_subject],class: "form-control")
  p
  .form-group
   .col-sm-offset-2.col-sm-10
-    = submit_tag("Search", class: "btn btn-success")
+    = submit_tag(t('search.search'), class: "btn btn-success")

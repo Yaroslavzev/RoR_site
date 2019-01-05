@@ -1,7 +1,6 @@
 = form_tag "/comments" do
  = hidden_field_tag :user_id, current_user.id
  = hidden_field_tag :commentable_id, @event.id
-/ remove field
  = hidden_field_tag :commentable_type, "Event"
 
  .form-group

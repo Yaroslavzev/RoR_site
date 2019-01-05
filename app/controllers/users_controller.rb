@@ -17,9 +17,6 @@ class UsersController < ApplicationController
 
   def update_notification
     @user = User.find(current_user.id)
-    Rails.logger.info "*" * 50
-    Rails.logger.info params
-    #Rails.logger.info search_params[:search_start_beg].class
 
   end
 

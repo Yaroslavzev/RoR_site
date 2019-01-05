@@ -25,9 +25,9 @@ en:
     log_out: Logout
     hello:  Hi,  %s
     registration: Registration
-    about_user: my data
-    events: events
-    search: search
+    about_user: My data
+    events: Events
+    search: Search
     email: E-mail
     password: Password
     remember_me: Remember me
@@ -57,17 +57,24 @@ en:
     New_event: New event
     listing_searches: Listing searches
     new_search: New search
+    topics_of_event: Topics of event
+    sure: Are you sure?
 
   search:
     show: Show
     back: Back
+    edit: Edit
+    back: Back
     save_result: Save result
     not_found: Event not found
-    city: The city
+    city: The place
     range: Start time range
     subject: The subject
     not_entered: has not been entered
     not_found_array: has not been found
+    search: Search
+    start: Begin at
+    end: End at
 
   user:
     editing_user: Editing user

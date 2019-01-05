@@ -6,6 +6,9 @@ class Event < ApplicationRecord
 
   validates :title, :body, :place, :date_from, :date_to, presence: true
 
+
+
+
     def self.search(search)
       search.delete_if {|key, object| object.empty?}
       @search_place = search[:search_place]

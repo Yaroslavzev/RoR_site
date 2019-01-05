@@ -17,6 +17,7 @@ class SearchesController < ApplicationController
   # GET /searches/1.json
   def show
     search_params_of_filtr = Search.find(search_params[:id]).attributes.except("id", "user_id", "created_at", "updated_at" ).map {|key, object| {"#{key}": object.to_s}}.reduce(:merge)
+
      @searches = Event.search(search_params_of_filtr) if !search_params.to_h.map { |k,v| v.empty? }.all?
 
   end
@@ -36,14 +37,14 @@ class SearchesController < ApplicationController
 
     @search = Search.new(search_params)
 
-    #respond_to do |format|
+    respond_to do |format|
       if @search.save
-        #format.html { redirect_to @search, notice: 'Search was successfully created.' }
-        #format.json { render :show, status: :created, location: @search }
+        format.html { redirect_to @search, notice: 'Search was successfully created.' }
+        format.json { render :show, status: :created, location: @search }
       else
-        #format.html { render :new }
-        #format.json { render json: @search.errors, status: :unprocessable_entity }
-      #end
+        format.html { render :new }
+        format.json { render json: @search.errors, status: :unprocessable_entity }
+      end
     end
   end
 #
