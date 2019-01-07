@@ -16,6 +16,16 @@ header
   ul.nav.nav-pills
 
     - if user_signed_in?
+
+      li
+      .dropdown
+        button  aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button"
+          | Notifications
+          =" "
+
+          span id="dropdown"
+        .dropdown-menu id='dropdown-menu' aria-labelledby="dropdownMenuButton"
+
       li
         = link_to t('label.about_user'), user_path(current_user.id)
       li
@@ -33,3 +43,7 @@ header
 /          li
 /            = link_to 'Пользователи', users_path
 /
+/ a#dropdownMenu1.dropdown-toggle.nav-link aria-expanded="false" aria-haspopup="true" data-behavior="notifications-link" data-toggle="dropdown" type="button"
+
+/ = link_to 'catering', events_path,   data: {behavior: "notifications"}
+/  , id: { behavior: "notifications"}

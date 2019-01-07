@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users  =  User.all.page(params[:page]).per(5)
+    @notifications = Notification.where(user_id: current_user).unread
   end
 
   # GET /users/1
