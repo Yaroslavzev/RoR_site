@@ -16,11 +16,6 @@ class UsersController < ApplicationController
     @notifications = Notification.where(user_id: current_user).unread
   end
 
-  def update_notification
-    @user = User.find(current_user.id)
-
-  end
-
   # GET /users/new
   def new
     @user = User.new
@@ -78,6 +73,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :moderator, :creator, :banned, :comments_count)
+      params.require(:user).permit(:name, :email, :comments_count)
     end
 end

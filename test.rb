@@ -46,7 +46,7 @@ data = {search_place: " " , search_subject: "", search_start_beg: "", search_sta
 #bb = Notification.create(user_id: 1, search_id: 3)
 #puts bb.save
 
-puts User.first.email
+puts ap User.first
 #@searches.compact.inject{|total, object| total & object.compact}.compact.map do |event2|
 #  p
 #    = Event.find(event2).title

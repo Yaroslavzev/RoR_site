@@ -9,23 +9,12 @@ p
   =  " "
   = @user.email
 p
-  strong Moderator:
-  =" "
-  = @user.moderator
-p
-  strong Creator:
-  = " "
-  = @user.creator
-p
-  strong Banned:
-  = " "
-  = @user.banned
-p
   strong Comments count:
   = " "
   = @user.comments_count
+- if @filtres.size > 0
+  h2 Filtres
 
-h2 Filtres
 - number_of_filtr = 0
 -@filtres.each do |filtr|
   .filtr

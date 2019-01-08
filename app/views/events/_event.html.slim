@@ -12,6 +12,6 @@
     = event
 .event_body_nav
   = link_to t('event.Show'), event if title == "all"
-  = link_to t('event.Edit'), edit_event_path(event)
-  = link_to t('event.Destroy'), event, data: { confirm: t('event.sure')}, method: :delete
+  = link_to t('event.Edit'), edit_event_path(event) if event.user == current_user
+  = link_to t('event.Destroy'), event, data: { confirm: t('event.sure')}, method: :delete if event.user == current_user
   = link_to t('event.Back'), events_path if title == "one"

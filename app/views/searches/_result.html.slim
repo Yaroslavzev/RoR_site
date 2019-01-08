@@ -11,7 +11,7 @@
 
 br
 - if @searches.present?
-  h2 Search result
+  h2 #{t("search.result")}
   p
   - if !@searches.compact.map {|object| object.compact.empty?}.all? {|object| object.eql?(false)}
     = t("search.not_found")

@@ -4,9 +4,6 @@ table class="user_body"
     tr
       th #{t('user.Name')}
       th #{t('user.Email')}
-      th #{t('user.Moderator')}
-      th #{t('user.Creator')}
-      th #{t('user.Banned')}
       th #{t('user.Comments')}
       th
       th
@@ -17,9 +14,6 @@ table class="user_body"
       tr
         td = user.name
         td = user.email
-        td = user.moderator
-        td = user.creator
-        td = user.banned
         td = user.comments_count
         td = link_to t('user.show'), user
         td = link_to t('user.edit'), edit_user_path(user)

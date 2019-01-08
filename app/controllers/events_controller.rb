@@ -35,9 +35,10 @@ class EventsController < ApplicationController
 
 
         Search.all.each do |object|
-          search_params_of_filtr = object.attributes.except("id", "user_id", "created_at", "updated_at" ).map {|key, object| {"#{key}": object.to_s}}.reduce(:merge)
+          search_params_of_filtr = object.params_of_filtr
 
-          Notification.create(user_id: object.user.id, search_id: object.id, event_id: @event.id) if @event.search_notif(search_params_of_filtr).compact.inject{|total, object| total & object.compact}.any?
+          Notification.create(user_id: object.user.id, search_id: object.id, event_id: @event.id) if @event.search_notif(search_params_of_filtr).result
+
         end
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
@@ -53,6 +54,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(title: event_params[:title], body: eval(event_params[:body]), place: event_params[:place], user_id:  event_params[:user_id],  date_from: event_params[:date_from],  date_to: event_params[:date_to],  visible: event_params[:visible])
+        
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -65,8 +67,6 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-
-    #, data: { confirm: t('event.sure')  }
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }

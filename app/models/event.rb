@@ -1,13 +1,14 @@
 class Event < ApplicationRecord
   belongs_to :user
 
-  has_many :comments, as: :commentable
-  has_many :commentators, through: :comments, source: :user
+
+  has_many :comments, dependent: :destroy
 
   validates :title, :body, :place, :date_from, :date_to, presence: true
 
-
-
+  def result
+    compact.inject{|total, object| total & object.compact}.any?
+  end
 
     def self.search(search)
       search.delete_if {|key, object| object.empty?}

@@ -75,6 +75,7 @@ en:
     search: Search
     start: Begin at
     end: End at
+    result: Search result
 
   user:
     editing_user: Editing user
