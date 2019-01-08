@@ -2,33 +2,33 @@ p#notice = notice
 
 p
   strong Name:
+  = " "
   = @user.name
 p
   strong Email:
+  =  " "
   = @user.email
 p
-  strong Moderator:
-  = @user.moderator
-p
-  strong Creator:
-  = @user.creator
-p
-  strong Banned:
-  = @user.banned
-p
   strong Comments count:
+  = " "
   = @user.comments_count
+- if @filtres.size > 0
+  h2 Filtres
 
-h2 Filtres
 - number_of_filtr = 0
 -@filtres.each do |filtr|
   .filtr
     - number_of_filtr += 1
     = link_to "Filtr №" + number_of_filtr.to_s, search_path(filtr.id)
     p
-      = filtr.id
+
+       - @notifications.each do |notification|
+        p
+          = notification.event.title if notification.search_id == filtr.id
+          = '   '
+          = link_to "Go to event", Event.find(notification.event_id)  if notification.search_id == filtr.id
 
 
-=> link_to 'Edit', edit_user_path(@user)
+=> link_to t('search.edit'), edit_user_path(@user)
 '|
-=< link_to 'Back', users_path
+=< link_to t('search.back'), users_path

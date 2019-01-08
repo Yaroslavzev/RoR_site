@@ -16,12 +16,22 @@ header
   ul.nav.nav-pills
 
     - if user_signed_in?
+
       li
-        = link_to 'Мои данные', user_path(current_user.id)
+      .dropdown
+        button  aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button"
+          | Notifications
+          =" "
+
+          span id="dropdown"
+        .dropdown-menu id='dropdown-menu' aria-labelledby="dropdownMenuButton"
+
       li
-        = link_to 'Встречи', events_path  
+        = link_to t('label.about_user'), user_path(current_user.id)
       li
-        = link_to 'Search', searches_path
+        = link_to t('label.events'), events_path
+      li
+        = link_to t('label.search'), searches_path
 
 
 
@@ -33,3 +43,7 @@ header
 /          li
 /            = link_to 'Пользователи', users_path
 /
+/ a#dropdownMenu1.dropdown-toggle.nav-link aria-expanded="false" aria-haspopup="true" data-behavior="notifications-link" data-toggle="dropdown" type="button"
+
+/ = link_to 'catering', events_path,   data: {behavior: "notifications"}
+/  , id: { behavior: "notifications"}

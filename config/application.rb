@@ -10,10 +10,9 @@ module Unit7
   class Application < Rails::Application
     #config.assest.precompile += %w(*.png *.jpg *.ipeg *.gif)
     # Initialize configuration defaults for originally generated Rails version.
-    config.i18n.default_locale  =  :ru
+    config.i18n.default_locale  =  :en
     config.time_zone  =  'Moscow'
     config.load_defaults 5.2
-    config.middleware.use Xray::Middleware
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

@@ -1,6 +1,6 @@
 
 #puts ap Event.first(2)
-data = {search_place: "ddd" , search_subject: "dd", search_start_beg: "", search_start_end: ""}#, :search_start, :search_end,:search_subject)
+data = {search_place: " " , search_subject: "", search_start_beg: "", search_start_end: ""}#, :search_start, :search_end,:search_subject)
 
 #puts data[:search_city]
 #p Event.search(data)
@@ -24,13 +24,38 @@ data = {search_place: "ddd" , search_subject: "dd", search_start_beg: "", search
 #end
 #end
 #bbb = Event.search(Search.last.attributes.except("id", "user_id", "created_at", "updated_at" ))
-pp =  Search.find(9).attributes.except("id", "user_id", "created_at", "updated_at" ).map {|key, object| {"#{key}": object.to_s}}.reduce(:merge)
-  #p object#.map do |key, value|
-  #  p key
-  #end
+#puts ap Event.last
 
+#Search.all.each do |object|
+#  puts object.attributes.except("id", "user_id", "created_at", "updated_at" ).map {|key, object| {"#{key}": object.to_s}}.reduce(:merge)#.delete_if {|key, object| object.empty?}
+#end
+#puts pp
+#puts User.first.email
+#@event = Event.first#.search_notif(search_params_of_filtr).compact.inject{|total, object| total & object.compact}.any?
 
-p Event.search(pp)
+#Search.all.each do |object|
+#  search_params_of_filtr = object.attributes.except("id", "user_id", "created_at", "updated_at" ).map {|key, object| {"#{key}": object.to_s}}.reduce(:merge)
+#
+#  puts search_params_of_filtr
+#  puts @event.search_notif(search_params_of_filtr).compact.inject{|total, object| total & object.compact}.any?
+#
+#
+#  Notification.create(user_id: object.user.id, search_id: object.id, event_id: @event.id) if @event.search_notif(search_params_of_filtr).compact.inject{|total, object| total & object.compact}.any?
+#end
 
+#bb = Notification.create(user_id: 1, search_id: 3)
+#puts bb.save
+
+puts ap User.first
+#@searches.compact.inject{|total, object| total & object.compact}.compact.map do |event2|
+#  p
+#    = Event.find(event2).title
+#    ="  "
+#    = link_to 'Show', Event.find(event2)
+
+#p Event.search(data)
 #p pp["search_start_beg"].to_s(:db).class
 #p pp["search_start_beg"].to_s.class
+#puts ap Event.first
+
+#puts ap Search.last.user

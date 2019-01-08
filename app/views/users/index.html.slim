@@ -1,14 +1,10 @@
-h1 Listing users
-
+h1 #{t('user.listing_users')}
 table class="user_body"
   thead
     tr
-      th Name
-      th Email
-      th Moderator
-      th Creator
-      th Banned
-      th Comments count
+      th #{t('user.Name')}
+      th #{t('user.Email')}
+      th #{t('user.Comments')}
       th
       th
       th
@@ -18,19 +14,16 @@ table class="user_body"
       tr
         td = user.name
         td = user.email
-        td = user.moderator
-        td = user.creator
-        td = user.banned
         td = user.comments_count
-        td = link_to 'Show', user
-        td = link_to 'Edit', edit_user_path(user)
-        td = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to t('user.show'), user
+        td = link_to t('user.edit'), edit_user_path(user)
+        td = link_to t('user.destroy'), user, data: { confirm: t('user.sure') }, method: :delete
 
 br
 
 
 
-= link_to 'New User', new_user_path
+= link_to t('user.new_user'), new_user_path
 
 p class="pagination"
  = paginate  @users

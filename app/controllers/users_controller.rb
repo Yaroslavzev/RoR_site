@@ -6,12 +6,14 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users  =  User.all.page(params[:page]).per(5)
+    @notifications = Notification.where(user_id: current_user).unread
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
     @filtres = User.find(current_user.id).searches
+    @notifications = Notification.where(user_id: current_user).unread
   end
 
   # GET /users/new
@@ -71,6 +73,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :moderator, :creator, :banned, :comments_count)
+      params.require(:user).permit(:name, :email, :comments_count)
     end
 end

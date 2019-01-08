@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_01_201840) do
+ActiveRecord::Schema.define(version: 2019_01_03_142506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,12 +18,11 @@ ActiveRecord::Schema.define(version: 2019_01_01_201840) do
   create_table "comments", id: :serial, force: :cascade do |t|
     t.text "body"
     t.integer "user_id"
+    t.integer "event_id"
     t.boolean "visible", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "commentable_type"
-    t.integer "commentable_id"
-    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["event_id"], name: "index_comments_on_event_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -40,6 +39,15 @@ ActiveRecord::Schema.define(version: 2019_01_01_201840) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "search_id"
+    t.integer "user_id"
+    t.integer "event_id"
+    t.datetime "read_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "searches", force: :cascade do |t|
     t.integer "user_id"
     t.string "search_place"
@@ -53,9 +61,6 @@ ActiveRecord::Schema.define(version: 2019_01_01_201840) do
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.boolean "moderator", default: false
-    t.boolean "creator", default: false
-    t.boolean "banned", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "comments_count"
@@ -72,6 +77,7 @@ ActiveRecord::Schema.define(version: 2019_01_01_201840) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
   add_foreign_key "events", "users"
 end

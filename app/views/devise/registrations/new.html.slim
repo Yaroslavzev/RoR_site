@@ -1,5 +1,5 @@
 div class="devise"
-  h2 Регистрация
+  h2 =t('label.registration')
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form.form-horizontal"}) do |f|
    = devise_error_messages!
    .form-group
@@ -15,11 +15,7 @@ div class="devise"
    .form-group
      .col-sm-2.control-label
       = t('label.password')
-      - if @minimum_password_length
-       em
-         | (
-         = @minimum_password_length
-         |  символов минимум)
+    
      .col-sm-10
        = f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Password"
    .form-group
@@ -29,7 +25,7 @@ div class="devise"
       = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Password"
    .form-group
     .col-sm-offset-2.col-sm-10
-      = f.submit "Зарегистрироваться", class: "btn btn-success"
+      = f.submit "#{t('label.sign_up')}", class: "btn btn-success"
 
   .devise_2
    = render "devise/shared/links"

@@ -18,29 +18,26 @@ hash_users = 10.times.map do
   }
 end
 users = User.create! hash_users
-users.first(7).each { |u| u.update creator: true }
-users.first(2).each { |u| u.update moderator: true }
 
-creators = User.where(creator: true)
 hash_posts = 10.times.map do
   {
     title: FFaker::Conference.name,
     body: Array.new(rand(4...6)) {FFaker::HipsterIpsum.sentence(word_count = 2)},
-    user: creators.sample,
+    user: users.sample,
     place: FFaker::Venue.name,
     date_from: FFaker::Time.between(Time.current, Time.current + 5.day),
-    date_to: FFaker::Time.between(Time.current+5, Time.current + 10.day)
+    date_to: FFaker::Time.between(Time.current+6, Time.current + 10.day)
   }
 end
-posts = Event.create! hash_posts
+events = Event.create! hash_posts
 
 hash_comments = 200.times.map do
-  commentable = ((rand(2) == 1) ? posts : users).sample
+
   {
     body: FFaker::HipsterIpsum.sentence,
     user: users.sample,
-    commentable_id: commentable.id,
-    commentable_type: commentable.class.to_s
+    event: events.sample,
+
   }
 end
 Comment.create! hash_comments
