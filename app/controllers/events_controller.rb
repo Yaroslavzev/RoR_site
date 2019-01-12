@@ -1,12 +1,10 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
-
-
+  before_action :set_event, only: %i[show edit update destroy]
   # GET /events
   # GET /events.json
   def index
-     @events  =  Event.includes(:user).page(params[:page]).per(3)
+    @events = Event.includes(:user).page(params[:page]).per(3)
   end
 
   # GET /events/1
@@ -21,26 +19,27 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /events
   # POST /events.json
   def create
-
-    @event = Event.new(title: event_params[:title], body: eval(event_params[:body]), place: event_params[:place], user_id:  event_params[:user_id],  date_from: event_params[:date_from],  date_to: event_params[:date_to],  visible: event_params[:visible])
+    @event = Event.new(title: event_params[:title],
+                       body: eval(event_params[:body]),
+                       place: event_params[:place],
+                       user_id:  event_params[:user_id],
+                       date_from: event_params[:date_from],
+                       date_to: event_params[:date_to],
+                       visible: event_params[:visible])
 
     respond_to do |format|
       if @event.save
-
-
         Search.all.each do |object|
           search_params_of_filtr = object.params_of_filtr
 
-          Notification.create(user_id: object.user.id, search_id: object.id, event_id: @event.id) if @event.search_notif(search_params_of_filtr).result
-
+          Notification.create(user_id: object.user.id, search_id: object.id, event_id: @event.id) if @event.search_notif(search_params_of_filtr).compact.inject { |total, object| total & object.compact }.any?
         end
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: "Event was successfully created." }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -53,9 +52,15 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     respond_to do |format|
-      if @event.update(title: event_params[:title], body: eval(event_params[:body]), place: event_params[:place], user_id:  event_params[:user_id],  date_from: event_params[:date_from],  date_to: event_params[:date_to],  visible: event_params[:visible])
-        
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+      if @event.update(title: event_params[:title],
+                       body: eval(event_params[:body]),
+                       place: event_params[:place], user_id:
+                       event_params[:user_id],
+                       date_from: event_params[:date_from],
+                       date_to: event_params[:date_to],
+                       visible: event_params[:visible])
+
+        format.html { redirect_to @event, notice: "Event was successfully updated." }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -69,19 +74,20 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:title, :body, :user_id, :place, :date_from, :date_to, :visible)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def event_params
+    params.require(:event).permit(:title, :body, :user_id, :place, :date_from, :date_to, :visible)
+  end
 end

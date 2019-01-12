@@ -1,2 +1,2 @@
-server: bin/rails server
-assets: bin/webpack-dev-server
+webpack: bin/webpack-dev-server
+web: bundle exec puma
