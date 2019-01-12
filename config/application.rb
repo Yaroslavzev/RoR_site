@@ -1,6 +1,6 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -8,10 +8,10 @@ Bundler.require(*Rails.groups)
 
 module Unit7
   class Application < Rails::Application
-    #config.assest.precompile += %w(*.png *.jpg *.ipeg *.gif)
+    # config.assest.precompile += %w(*.png *.jpg *.ipeg *.gif)
     # Initialize configuration defaults for originally generated Rails version.
-    config.i18n.default_locale  =  :en
-    config.time_zone  =  'Moscow'
+    config.i18n.default_locale = :en
+    config.time_zone = "Moscow"
     config.load_defaults 5.2
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

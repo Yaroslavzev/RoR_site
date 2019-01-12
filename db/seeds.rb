@@ -10,7 +10,7 @@ User.destroy_all
 Event.destroy_all
 Comment.destroy_all
 
-hash_users = 10.times.map do
+hash_users = Array.new(10) do
   {
     name: FFaker::Internet.user_name[0...16],
     email: FFaker::Internet.safe_email,
@@ -19,25 +19,23 @@ hash_users = 10.times.map do
 end
 users = User.create! hash_users
 
-hash_posts = 10.times.map do
+hash_posts = Array.new(10) do
   {
     title: FFaker::Conference.name,
-    body: Array.new(rand(4...6)) {FFaker::HipsterIpsum.sentence(word_count = 2)},
+    body: Array.new(rand(4...6)) { FFaker::HipsterIpsum.sentence(word_count = 2) },
     user: users.sample,
     place: FFaker::Venue.name,
-    date_from: FFaker::Time.between(Time.current, Time.current + 5.day),
-    date_to: FFaker::Time.between(Time.current+6, Time.current + 10.day)
+    date_from: FFaker::Time.between(Time.current, Time.current + 5.days),
+    date_to: FFaker::Time.between(Time.current + 6, Time.current + 10.days)
   }
 end
 events = Event.create! hash_posts
 
-hash_comments = 200.times.map do
-
+hash_comments = Array.new(200) do
   {
     body: FFaker::HipsterIpsum.sentence,
     user: users.sample,
-    event: events.sample,
-
+    event: events.sample
   }
 end
 Comment.create! hash_comments

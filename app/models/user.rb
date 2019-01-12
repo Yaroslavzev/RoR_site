@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :commented_users, through: :comments, source: :commentable, source_type: :User
 
   private
+
   def log_before_destroy
     Rails.logger.info "record with name = #{name} will be deleted soon"
   end
