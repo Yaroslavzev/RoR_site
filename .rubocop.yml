@@ -1,3 +1,5 @@
+inherit_from: .rubocop_todo.yml
+
 Rails:
   Enabled: true
 
@@ -69,6 +71,7 @@ AllCops:
     - 'db/migrate/**/*'
     - 'bin/**/*'
     - 'test/**/*'
+    - 'config/environments/test.rb'
 
 # Commonly used screens these days easily fit more than 80 characters.
 Metrics/LineLength:

@@ -1,6 +1,3 @@
-#json.partial! "users/user", user: @user
-
-
 json.array! @notifications do |notification|
   json.id notification.id
   json.event_id notification.event_id

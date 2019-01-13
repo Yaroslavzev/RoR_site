@@ -37,7 +37,7 @@ class EventsController < ApplicationController
         Search.all.each do |object|
           search_params_of_filtr = object.params_of_filtr
 
-          Notification.create(user_id: object.user.id, search_id: object.id, event_id: @event.id) if @event.search_notif(search_params_of_filtr).compact.inject { |total, object| total & object.compact }.any?
+          Notification.create(user_id: object.user.id, search_id: object.id, event_id: @event.id) if @event.search_notif(search_params_of_filtr).compact.inject { |total, ob| total & ob.compact }.any?
         end
         format.html { redirect_to @event, notice: "Event was successfully created." }
         format.json { render :show, status: :created, location: @event }

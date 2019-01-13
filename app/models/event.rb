@@ -30,49 +30,33 @@ class Event < ApplicationRecord
   end
 
   private_class_method def self.place_search_result
-    unless @search_place.nil?
-      all.map do |object|
-        object.id if object.place == @search_place
-      end
-    end
+    all.map { |object| object.id if object.place == @search_place } unless @search_place.nil?
   end
 
   private_class_method def self.subject_search_result
-    unless @search_subject.nil?
-      all.map do |object|
-        object.id if object.body.map { |subject| subject.include?(@search_subject) }.reject { |i| i == false }.any?
-      end
-    end
+    return if @search_subject.nil?
+    all.map { |obj| obj.id if obj.body.map { |subject| subject.include?(@search_subject) }.reject { |i| i == false }.any? }
   end
 
   private_class_method def self.start_time_search_result
-    if !@search_start_beg.nil? && !@search_start_beg.nil?
-      all.map do |object|
-        object.id if object.date_from.between?(@search_start_beg.to_date, @search_start_end.to_date)
-      end
-    end
+    return if @search_start_beg.nil? && @search_start_beg.nil?
+    all.map { |object| object.id if object.date_from.between?(@search_start_beg.to_date, @search_start_end.to_date) }
   end
 
   private
 
   def place_search_result_notif
-    unless @search_place.nil?
-      result = id if place == @search_place
-      Array(result)
-    end
+    return if @search_place.nil?
+    Array.new(1) { id } if place == @search_place
   end
 
   def subject_search_result_notif
-    unless @search_subject.nil?
-      result = id if body.map { |subject| subject.include?(@search_subject) }.reject { |i| i == false }.any?
-      Array(result)
-    end
+    return if @search_subject.nil?
+    Array.new(1) { id } if body.map { |subject| subject.include?(@search_subject) }.reject { |i| i == false }.any?
   end
 
   def start_time_search_result_notif
-    if !@search_start_beg.nil? && !@search_start_beg.nil?
-      result = id if date_from.between?(@search_start_beg.to_date, @search_start_end.to_date)
-      Array(result)
-    end
+    return unless @search_start_beg.nil? && @search_start_beg.nil?
+    Array.new(1) { id } if date_from.between?(@search_start_beg.to_date, @search_start_end.to_date)
   end
 end
