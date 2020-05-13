@@ -1,32 +1,38 @@
 - print_out = [t("search.city"), t("search.range"), t("search.subject")]
 
 
-- if @searches.present?
-  - @searches.each_with_index do |object, index|
-    p
-    - if object.nil?
-      = print_out[index] + " #{t('search.not_entered')}"
-    - elsif object.kind_of?(Array) & object.compact.empty?
-      = print_out[index] +  " #{t('search.not_found_array')}"
+/ - if @searches.present?
+/   - @searches.each_with_index do |object, index|
+/     p
+/     - if object.nil?
+/       = print_out[index] + " #{t('search.not_entered')}"
+/     - elsif object.kind_of?(Array) & object.compact.empty?
+/       = print_out[index] +  " #{t('search.not_found_array')}"
 
 br
-- if @searches.present?
+- if @searches.exists?
   h2 #{t("search.result")}
   p
-  - if !@searches.compact.map {|object| object.compact.empty?}.all? {|object| object.eql?(false)}
-    = t("search.not_found")
-  - elsif @searches.compact.flatten.compact.size == 1
-    - @searches.compact.flatten.compact.map do |event|
-      p
-        = Event.find(event).title
-        ="  "
-        = link_to t('search.show'), Event.find(event)
-  - else
-    - @searches.compact.inject{|total, object| total & object.compact}.compact.map do |event|
-      p
-        = Event.find(event).title
-        ="  "
-        = link_to t('search.show'), Event.find(event)
+
+  - @searches.map do |event|
+    p
+      = event.title
+      ="  "
+      = link_to t('search.show'), event
+  / - if !@searches.compact.map {|object| object.compact.empty?}.all? {|object| object.eql?(false)}
+  /   = t("search.not_found")
+  / - if @searches.compact.flatten.compact.size == 1
+  /   - @searches.compact.flatten.compact.map do |event|
+  /     p
+  /       = event.title
+  /       ="  "
+  /       = link_to t('search.show'), event
+  / - else
+  /   - @searches.map do |event|
+  /     p
+  /       = event.title
+  /       ="  "
+  /       = link_to t('search.show'), event
   - if @inserted_data.present?
     p
       = form_tag "searches" do
