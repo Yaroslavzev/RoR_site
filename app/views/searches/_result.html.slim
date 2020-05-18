@@ -10,7 +10,7 @@
 /       = print_out[index] +  " #{t('search.not_found_array')}"
 
 br
-- if @searches.exists?
+- if !@searches.kind_of?(Class)
   h2 #{t("search.result")}
   p
 

@@ -4,15 +4,14 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: yaroslavzev
-  database: unit_7
-
 
 development:
   <<: *default
-
+  database: develop_blog
+  
 test:
   <<: *default
-
+  database: test_blog
 
 production:
   <<: *default

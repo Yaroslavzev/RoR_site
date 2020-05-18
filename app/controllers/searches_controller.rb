@@ -10,12 +10,14 @@ class SearchesController < ApplicationController
 
   # # GET /searches/1
   # # GET /searches/1.json
-  # def show
-  #   search_params_of_filtr = Search.find(search_params[:id]).params_of_filtr
-  #   @searches = Event.search(search_params_of_filtr) #unless search_params.to_h.map { |_k, v| v.empty? }.all?
-  # end
+  def show
+    # binding.pry
+    search_params_of_filtr = Search.find(search_params[:id]).params_of_filtr
+    @searches = SearchService.call(search_params_of_filtr)
+  end
 
   def create
+    # binding.pry
     @search = Search.new(search_params)
 
     respond_to do |format|
