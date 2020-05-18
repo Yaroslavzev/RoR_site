@@ -27,7 +27,7 @@ class EventsController < ApplicationController
     @event = Event.new(title: event_params[:title],
                        body: eval(event_params[:body]),
                        place: event_params[:place],
-                       user_id:  event_params[:user_id],
+                       user_id: event_params[:user_id],
                        date_from: event_params[:date_from],
                        date_to: event_params[:date_to],
                        visible: event_params[:visible])

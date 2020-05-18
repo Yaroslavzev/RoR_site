@@ -22,7 +22,7 @@ users = User.create! hash_users
 hash_posts = Array.new(10) do
   {
     title: FFaker::Conference.name,
-    body: Array.new(rand(4...6)) { FFaker::HipsterIpsum.sentence(word_count = 2) },
+    body: Array.new(rand(4...6)) { FFaker::HipsterIpsum.sentence(2) },
     user: users.sample,
     place: FFaker::Venue.name,
     date_from: FFaker::Time.between(Time.current, Time.current + 5.days),

@@ -51,11 +51,11 @@ gem "listen", ">= 3.0.5", "< 3.2"
 gem "webpacker"
 
 group :development, :test do
-  gem "rspec-rails"
+  gem "database_cleaner"
+  gem "factory_bot"
   gem "pry"
+  gem "rspec-rails"
   gem "rubocop", require: false
-  gem 'factory_bot'
-  gem 'database_cleaner'
 end
 
 group :development do

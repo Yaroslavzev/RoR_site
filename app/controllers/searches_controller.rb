@@ -11,13 +11,11 @@ class SearchesController < ApplicationController
   # # GET /searches/1
   # # GET /searches/1.json
   def show
-    # binding.pry
     search_params_of_filtr = Search.find(search_params[:id]).params_of_filtr
     @searches = SearchService.call(search_params_of_filtr)
   end
 
   def create
-    # binding.pry
     @search = Search.new(search_params)
 
     respond_to do |format|
