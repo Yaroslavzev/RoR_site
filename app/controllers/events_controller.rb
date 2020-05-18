@@ -24,13 +24,7 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(title: event_params[:title],
-                       body: eval(event_params[:body]),
-                       place: event_params[:place],
-                       user_id: event_params[:user_id],
-                       date_from: event_params[:date_from],
-                       date_to: event_params[:date_to],
-                       visible: event_params[:visible])
+    @event = Event.new(*event_params)
 
     respond_to do |format|
       if @event.save
@@ -49,14 +43,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     respond_to do |format|
-      if @event.update(title: event_params[:title],
-                       body: eval(event_params[:body]),
-                       place: event_params[:place], user_id:
-                       event_params[:user_id],
-                       date_from: event_params[:date_from],
-                       date_to: event_params[:date_to],
-                       visible: event_params[:visible])
-
+      if @event.update(*event_params)
         format.html { redirect_to @event, notice: "Event was successfully updated." }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -78,13 +65,14 @@ class EventsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:title, :body, :user_id, :place, :date_from, :date_to, :visible)
+    params.require(:event)
+          .permit(:title, :body, :user_id, :place, :date_from, :date_to, :visible)
+          .merge(body: [params[:event][:body]])
   end
 end
