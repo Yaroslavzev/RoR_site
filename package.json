@@ -14,7 +14,7 @@
     "rails-ujs": "^5.2.1",
     "turbolinks": "^5.2.0",
     "xray": "^0.5.1",
-    "yarn": "^1.10.1"
+    "yarn": "^1.22.0"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"
